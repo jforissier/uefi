@@ -169,20 +169,6 @@ GetRootTranslationTableInfo (
 
 STATIC
 VOID
-ReplaceLiveEntry (
-  IN  UINT64  *Entry,
-  IN  UINT64  Value
-  )
-{
-  if (!ArmMmuEnabled ()) {
-    *Entry = Value;
-  } else {
-    ArmReplaceLiveTranslationEntry (Entry, Value);
-  }
-}
-
-STATIC
-VOID
 LookupAddresstoRootTable (
   IN  UINT64  MaxAddress,
   OUT UINTN  *T0SZ,
@@ -337,8 +323,7 @@ GetBlockEntryListFromAddress (
         }
 
         // Fill the BlockEntry with the new TranslationTable
-        ReplaceLiveEntry (BlockEntry,
-          ((UINTN)TranslationTable & TT_ADDRESS_MASK_DESCRIPTION_TABLE) | TableAttributes | TT_TYPE_TABLE_ENTRY);
+        *BlockEntry = ((UINTN)TranslationTable & TT_ADDRESS_MASK_DESCRIPTION_TABLE) | TableAttributes | TT_TYPE_TABLE_ENTRY;
       }
     } else {
       if (IndexLevel != PageLevel) {
