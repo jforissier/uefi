@@ -1,6 +1,7 @@
 [submodule "OpenPlatformPkg"]
 	path = OpenPlatformPkg
-	url = https://git.linaro.org/people/heyi.guo/OpenPlatformPkg.git
+	url = https://github.com/jforissier/OpenPlatformPkg.git
+	branch = d02-optee
 [submodule "LinaroPkg"]
 	path = LinaroPkg
 	url = https://git.linaro.org/people/heyi.guo/LinaroPkg.git
